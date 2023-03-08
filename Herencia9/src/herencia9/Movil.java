@@ -3,12 +3,12 @@ package herencia9;
 public class Movil extends Terminal{
 
     private String tarifa;
-    private double totalTarificado;
+    private double coste;
 
     public Movil(String numero, String tarifa) {
         super(numero);
         this.tarifa = tarifa;
-        this.totalTarificado = 0;
+        this.coste = 0;
     }
 
     @Override
@@ -16,26 +16,21 @@ public class Movil extends Terminal{
         super.llama(t, segundosDeLlamada);
         double minutos = (double) segundosDeLlamada / 60;
         switch (this.tarifa) {
-            case "rata":
-                this.totalTarificado += minutos * 0.06;
-                break;
-            case "mono":
-                this.totalTarificado += minutos * 0.12;
-                break;
-            case "bisonte":
-                this.totalTarificado += minutos * 0.30;
-                break;
-            default:
+            case "rata" ->
+                this.coste += minutos * 0.06;
+            case "mono" ->
+                this.coste += minutos * 0.12;
+            case "bisonte" ->
+                this.coste += minutos * 0.30;
         }
     }
 
     @Override
     public String toString() {
-        
         return "Nº " + this.getNumero()
                 + " - " + this.getTiempoDeConversacion()
                 + "s de conversación - tarificados "
-                + this.totalTarificado + " euros";
+                + this.coste + " euros";
     }
 }
 
